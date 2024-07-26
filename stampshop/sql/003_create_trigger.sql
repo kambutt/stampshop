@@ -8,6 +8,17 @@ BEGIN
     FROM dual;
 END;
 /
+
+CREATE OR REPLACE TRIGGER trg_stamp_catalog_i
+BEFORE INSERT
+ON stamp_catalog
+FOR EACH ROW
+BEGIN
+    SELECT seq_stamp_catalog_pk.NEXTVAL
+    INTO :NEW.stamp_catalog_id
+    FROM dual;
+END;
+/
 CREATE OR REPLACE TRIGGER trg_stamp_list_i
 BEFORE INSERT
 ON stamp_list
